@@ -9,13 +9,38 @@
  *
  * The result should be [-1, 150, 160, 170, -1, -1, 180, 190]
  */
-function sortByHeight(arr) {
-  let indexs = [];
-  arr.forEach((item,index) => { if (item === -1) indexs.push(index) })
-  console.log(indexs);
-  arr.sort
+function sortfunction(a, b) {
+  return a - b;
 }
-
-console.log(sortByHeight([-1, 150, 190, 170, -1, -1, 160, 180]));
+function sortByHeight(arr) {
+  const indexs = [];
+  if (arr.includes(-1)) {
+    arr.forEach((item, index) => {
+      if (item === -1) indexs.push(index);
+    });
+    arr.forEach((item, index) => {
+      if (item === -1) {
+        arr.splice(index, 1);
+      }
+    });
+    arr.forEach((item, index) => {
+      if (item === -1) {
+        arr.splice(index, 1);
+      }
+    });
+    arr.forEach((item, index) => {
+      if (item === -1) {
+        arr.splice(index, 1);
+      }
+    });
+    arr.sort(sortfunction);
+    indexs.forEach((item) => {
+      arr.splice(item, 0, -1);
+    });
+  } else {
+    arr.sort(sortfunction);
+  }
+  return arr;
+}
 
 module.exports = sortByHeight;
