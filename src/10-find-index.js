@@ -12,18 +12,21 @@
  *
  */
 function findIndex(array, value) {
-  let num = 0;
-  const numTwo = Math.floor(array.length / 2);
-  if (numTwo >= value) {
-    for (let i = 0; i < numTwo; i++) {
-      if (value === array[i]) num = i;
+  let start = 0;
+  let end = array.length;
+  let middle = Math.floor((start + end) / 2);
+
+  for (let i = 0; i < array.length; i++) {
+    if (array[middle] !== value) {
+      if (value < array[middle]) end = middle;
+      else start = middle;
+      middle = Math.floor((start + end) / 2);
     }
-  } else {
-    for (let i = array.length; i >= numTwo; i--) {
-      if (value === array[i]) num = i;
-    }
+
+    if (array[middle] === value) return middle;
   }
-  return num;
+
+  return -1;
 }
 
 module.exports = findIndex;
